@@ -15,7 +15,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ../ttt_node/game */ \"./ttt_node/game.js\")\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  // Your code here\n  const game = new Game();\n  const ttt = document.getElementsByClassName(\"ttt\")[0];\n  const view = new View(game, ttt);\n \n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\")\nconst Game = __webpack_require__(/*! ../ttt_node/game */ \"./ttt_node/game.js\")\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  // Your code here\n  const game = new Game();\n  const ttt = document.getElementsByClassName(\"ttt\")[0];\n  // console.log(ttt, \"ttt\");\n  const view = new View(game, ttt);\n \n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("const View = __webpack_require__(/*! ./ttt-view.js */ \"./src/ttt-view.js\
   \*************************/
 /***/ ((module) => {
 
-eval("class View {\n  constructor(game, el) {\n    this.game = game;\n    this.el = el;\n    this.setupBoard();\n  }\n\n  setupBoard() {\n    this.grid = [];\n    for(let i = 0; i < 3; i++) {\n      let row = [];\n      for(let j = 0; j < 3; j++) {\n        let li = document.createElement(\"li\");\n        li.textContent = \"hello\";\n        this.el.appendChild(li);\n        row.push(li)\n      }\n      this.grid.push(row);\n    }\n  }\n\n  \n  bindEvents() {}\n\n  handleClick(e) {}\n\n  makeMove(square) {}\n\n}\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("\n\nclass View {\n  constructor(game, el) {\n    // console.log(el, \"el\");\n    this.game = game;\n\n    this.el = el;\n    \n    // this.el.appendChild(ul);\n\n    this.setupBoard();\n    this.bindEvents();\n  }\n\n  setupBoard() {\n    \n    const ul = document.createElement(\"ul\");\n    this.el.appendChild(ul);\n    for(let i = 0; i < 3; i++) {\n      \n      for(let j = 0; j < 3; j++) {\n        let li = document.createElement(\"li\");\n        li.dataset.pos = JSON.stringify([i,j]);\n        ul.appendChild(li);\n      }\n    }\n  }\n  \n  bindEvents() {\n    // EventTarget.addEvenetListener()\n    // game.playMove()\n    this.el.addEventListener(\"click\", this.handleClick);\n  }\n\n  handleClick(e) {\n    const target = e.target;\n    // console.log(target.attributes['data-pos'].value, \"target\");\n    const value = target.attributes['data-pos'].value;\n    // debugger;\n    console.log(Array.from(value), \"Array?\");\n    this.game.playMove(value);\n  }\n\n  makeMove(square) {}\n\n}\n\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ }),
 

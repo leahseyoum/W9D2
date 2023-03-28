@@ -1,0 +1,18 @@
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    list-style: none;
+}
+
+li:hover {
+    background-color: yellow;   
+}
+
+li {
+    background-color: grey;
+    border: 2px solid black;
+    width: 160px;
+    height: 160px;
+}
