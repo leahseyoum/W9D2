@@ -46,9 +46,21 @@ class View {
     // debugger;
     // console.log(x)
     this.game.playMove([x, y]);
+    this.makeMove(target);
+    // if (!this.game.playMove([x, y]) instanceof Error) {
+    //   this.makeMove(target);
+    // } else {
+    //   alert("invalid move!");
+    // }
   }
 
-  makeMove(square) {}
+  makeMove(square) {
+    let mark = this.game.currentPlayer;
+    square.classList.add("white");
+    square.innerHTML = mark;
+    // square.styl
+    square.style.backgroundColor = "white";
+  }
 
 }
 
