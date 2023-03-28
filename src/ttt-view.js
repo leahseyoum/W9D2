@@ -30,16 +30,22 @@ class View {
   bindEvents() {
     // EventTarget.addEvenetListener()
     // game.playMove()
-    this.el.addEventListener("click", this.handleClick);
+    const hc = this.handleClick.bind(this);
+    this.el.addEventListener("click", hc);
   }
 
   handleClick(e) {
     const target = e.target;
     // console.log(target.attributes['data-pos'].value, "target");
-    const value = target.attributes['data-pos'].value;
+    // const value = JSON.parse(target.attributes['data-pos']);
     // debugger;
-    console.log(Array.from(value), "Array?");
-    this.game.playMove(value);
+    // console.log(value, "value");
+    let pos = target.attributes['data-pos'].value;
+    let x = parseInt(pos[1]);
+    let y = parseInt(pos[3]);
+    // debugger;
+    // console.log(x)
+    this.game.playMove([x, y]);
   }
 
   makeMove(square) {}
