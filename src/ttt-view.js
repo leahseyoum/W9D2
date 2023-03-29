@@ -30,8 +30,8 @@ class View {
   bindEvents() {
     // EventTarget.addEvenetListener()
     // game.playMove()
-    const hc = this.handleClick.bind(this);
-    this.el.addEventListener("click", hc);
+    this.hc = this.handleClick.bind(this);
+    this.el.addEventListener("click", this.hc);
   }
 
   handleClick(e) {
@@ -45,13 +45,19 @@ class View {
     let y = parseInt(pos[3]);
     // debugger;
     // console.log(x)
-    this.game.playMove([x, y]);
+    try {
+      this.game.playMove([x, y]);
+    }
+    catch(error){
+      alert(error.msg);
+    }
     this.makeMove(target);
-    // if (!this.game.playMove([x, y]) instanceof Error) {
-    //   this.makeMove(target);
-    // } else {
-    //   alert("invalid move!");
-    // }
+
+    if(this.game.isOver()) {
+      console.log(`congratulations ${this.game.currentPlayer}!`);
+      this.el.removeEventListener("click", this.hc);
+    }
+    
   }
 
   makeMove(square) {
@@ -59,7 +65,7 @@ class View {
     square.classList.add("white");
     square.innerHTML = mark;
     // square.styl
-    square.style.backgroundColor = "white";
+  //   square.style.backgroundColor = "white";
   }
 
 }

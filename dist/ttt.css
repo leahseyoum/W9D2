@@ -16,3 +16,9 @@ li {
     width: 160px;
     height: 160px;
 }
+
+.white {
+    background-color: white;
+    font-size: xx-large;
+    text-align: center;
+}
