@@ -19,6 +19,7 @@ li {
 
 .white {
     background-color: white;
-    font-size: xx-large;
+    font-size: 100px;
     text-align: center;
+    line-height: 150px;
 }

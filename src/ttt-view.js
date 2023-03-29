@@ -36,32 +36,31 @@ class View {
 
   handleClick(e) {
     const target = e.target;
-    // console.log(target.attributes['data-pos'].value, "target");
-    // const value = JSON.parse(target.attributes['data-pos']);
-    // debugger;
-    // console.log(value, "value");
-    let pos = target.attributes['data-pos'].value;
+    this.makeMove(target);
+
+    
+  }
+
+  makeMove(square) {
+
+    let pos = square.attributes['data-pos'].value;
     let x = parseInt(pos[1]);
     let y = parseInt(pos[3]);
-    // debugger;
-    // console.log(x)
+
+    let mark = this.game.currentPlayer;
+
     try {
       this.game.playMove([x, y]);
     }
     catch(error){
       alert(error.msg);
     }
-    this.makeMove(target);
-
-    if(this.game.isOver()) {
-      console.log(`congratulations ${this.game.currentPlayer}!`);
+    // debugger;
+    if(this.game.isOver() && this.game.winner()) {
+      console.log(`congratulations ${this.game.winner()}!`);
       this.el.removeEventListener("click", this.hc);
     }
-    
-  }
 
-  makeMove(square) {
-    let mark = this.game.currentPlayer;
     square.classList.add("white");
     square.innerHTML = mark;
     // square.styl
